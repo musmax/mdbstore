@@ -1,10 +1,10 @@
+import Header from "./components/Header"
 import AllRoutes from "./routes/AllRoutes"
-
 
 function App() {
   return (
-    <div>
-      hello mdb my padi of life
+    <div className="">
+      <Header />
       <AllRoutes />
     </div>
   )

@@ -6,12 +6,14 @@ const Header = () => {
     <div>    
         <div className='bg-black text-white h-10 pt-2'>
             <p className='text-center font-mono'>
-                Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <span><a href="#">ShopNow</a></span>
+                Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <span className='underline'><a href="#">ShopNow</a></span>
+                <span className='pl-5'>English</span>
             </p>
+
         </div>
 
         <div className='flex gap-1 justify-between items-center py-2 header-container'>
-          <h1 className='text-2xl font-bold'>Exclusive</h1>
+          <h1 className='text-2xl font-bold'>MDBHUB</h1>
           <ul className='flex gap-4 text-sm'>
               <Link to="/">Home</Link>
               <Link to="/contact">Contact</Link>

@@ -10,3 +10,18 @@
     min-height: 10vh;
     padding: 0 80px;
 }
+
+.footer-container {
+    max-width: 1280px;
+    min-height: 35vh;
+    background-color: black;
+    color: white;
+    padding: 50px 80px;
+}
+
+.common-flex {
+    display: flex;
+    justify-content:space-between;
+    flex-direction: column;
+    font-size: 13px;
+}

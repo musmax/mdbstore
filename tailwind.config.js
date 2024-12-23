@@ -7,7 +7,13 @@ module.exports = {
         'others': {
           'min': '340px',
           'max': '1200px',
-        }
+        },
+      },
+      fontFamily: {
+        inter: ['Inter', 'sans-serif'], // Correctly placed
+      },
+      fontSize: {
+        '36px': '36px', // Correctly placed
       },
       colors: {
         'darkBg': '#1E293B'
@@ -17,4 +23,5 @@ module.exports = {
   darkMode: 'class',
   plugins: [
     require('flowbite/plugin')
-]  };
+  ],
+};

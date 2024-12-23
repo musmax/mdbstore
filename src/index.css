@@ -10,6 +10,18 @@
     min-height: 10vh;
     padding: 0 80px;
 }
+.product-container {
+    max-width: 1280px;
+    margin: auto;
+    min-height: 10vh;
+    padding: 40px 80px;
+}
+.product-container-view {
+    max-width: 1000px;
+    margin: auto;
+    min-height: 10vh;
+    padding: 40px 80px;
+}
 
 .footer-container {
     max-width: 1280px;
@@ -24,4 +36,15 @@
     justify-content:space-between;
     flex-direction: column;
     font-size: 13px;
+}
+
+.carousel {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    gap: 115px;
+}
+
+.carousel-right-item {
+    width: 700px;
+    height: 300px;
 }

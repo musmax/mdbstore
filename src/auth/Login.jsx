@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const formStyle =
   'border-x-0 border-t-0 border-b border-gray-300 focus:border-gray-500 focus:outline-none focus:ring-0';
 
-const SignUp = () => {
+const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate(); // Initialize navigate
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -17,16 +18,10 @@ const SignUp = () => {
     <>
       <Formik
         initialValues={{
-          firstname: '',
-          lastname: '',
           email: '',
           password: '',
         }}
         validationSchema={Yup.object({
-          firstname: Yup.string()
-            .max(15, 'First name is too long')
-            .required('Firstname is required'),
-          lastname: Yup.string().required('Lastname is required'),
           email: Yup.string()
             .email('Invalid email address')
             .required('Email is required'),
@@ -39,26 +34,26 @@ const SignUp = () => {
             .required('Password is required'),
         })}
         onSubmit={(values, { setSubmitting }) => {
-          console.log('Form submitted successfully:', values);
-
-          // Save user to local storage
-          let db = [];
-          const doesDatabaseExist = localStorage.getItem('user');
-          if (!doesDatabaseExist) {
-            localStorage.setItem('user', JSON.stringify([]));
+          // Retrieve the user database from localStorage
+          const storedUsers = localStorage.getItem('user');
+          if (!storedUsers) {
+            alert('No registered accounts found. Please register first.');
           } else {
-            db = JSON.parse(doesDatabaseExist);
+            const userDatabase = JSON.parse(storedUsers);
+            const isUserExisting = userDatabase.find(
+              (existingUser) =>
+                existingUser.email === values.email &&
+                existingUser.password === values.password
+            );
+
+            if (!isUserExisting) {
+              alert('Invalid email or password');
+            } else {
+              alert('Login successful!');
+              navigate('/'); // Redirect to the home page
+            }
           }
 
-          const isUserExisting = db.find(
-            (existingUser) => existingUser.email === values.email
-          );
-          if (isUserExisting) {
-            alert('User with the same email already exists');
-          } else {
-            db.push(values);
-            localStorage.setItem('user', JSON.stringify(db));
-          }
           setSubmitting(false);
         }}
       >
@@ -87,36 +82,6 @@ const SignUp = () => {
                 className="flex flex-col gap-4 px-10"
               >
                 <p>Enter your details below</p>
-
-                {/* First Name */}
-                <input
-                  type="text"
-                  id="firstname"
-                  name="firstname"
-                  value={values.firstname}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={formStyle}
-                  placeholder="First Name"
-                />
-                {errors.firstname && touched.firstname ? (
-                  <span className="text-red-500">{errors.firstname}</span>
-                ) : null}
-
-                {/* Last Name */}
-                <input
-                  type="text"
-                  id="lastname"
-                  name="lastname"
-                  value={values.lastname}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={formStyle}
-                  placeholder="Last Name"
-                />
-                {errors.lastname && touched.lastname ? (
-                  <span className="text-red-500">{errors.lastname}</span>
-                ) : null}
 
                 {/* Email */}
                 <input
@@ -178,9 +143,9 @@ const SignUp = () => {
                   </Link>
                 </div>
                 <p>
-                  Already have an account?{' '}
-                  <Link to="/login" className="text-blue-500">
-                    Login
+                  Don't have an account?{' '}
+                  <Link to="/signup" className="text-blue-500">
+                    Register
                   </Link>
                 </p>
               </div>
@@ -192,4 +157,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Login;

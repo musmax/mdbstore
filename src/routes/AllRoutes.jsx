@@ -1,11 +1,12 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import About from '../components/About'
-import Contact from '../components/Contact'
+import About from '../pages/About'
+import Contact from '../pages/Contact'
 import SignUp from '../auth/SignUp'
 import ProductDetail from '../pages/ProductDetail'
 import Home from '../pages/Home'
 import Login from '../auth/Login'
+import Cart from '../pages/Cart'
 
 const AllRoutes = () => {
   return (
@@ -16,6 +17,7 @@ const AllRoutes = () => {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/view-product" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/cart" element={<Cart />} />
         {/* <Route path='posts/:id/:name' element={<PostItem/>}/> // in dynamic param u can add as many params as possible
         <Route path='profile' element={<Profile/>}/> */}
         <Route path='*' element={

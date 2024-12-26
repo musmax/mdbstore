@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import Rating from '../components/Rating'
 import ColorCircle from '../components/ColorCircle'
+import { useSelector } from 'react-redux'
+
 
 const ProductDetail = () => {
+  const carts = useSelector((state) => state.cart.cartList);
+
   const [counter, setCounter] = useState(0);
 
   const [likedColor, setLikedColor] = useState('black');

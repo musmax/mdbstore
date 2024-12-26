@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 
 const Header = () => {
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const totalCart = useSelector((state) => state.cart.totalCart);
+  
+    const toggleDropdown = () => {
+      setIsDropdownOpen(!isDropdownOpen);
+    };
+
   return (
     <div>    
         <div className='bg-black text-white h-10 pt-2'>
@@ -32,7 +40,43 @@ const Header = () => {
             </div>
             <div className='flex gap-4 ml-4 items-center'>
               <i className="fa fa-heart text-xl" aria-hidden="true"></i>
-              <i className="fa fa-shopping-cart text-xl" aria-hidden="true"></i>
+              <div className="relative">
+            <Link to="/cart">
+              <i className="fa fa-shopping-cart text-3xl" aria-hidden="true"></i>
+              {totalCart > 0 && (
+                <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full px-2 py-1">
+                  {totalCart}
+                </span>
+              )}
+            </Link>
+            </div>
+
+            </div>
+            <div>
+              <div className='pl-2'>
+                <img src="public\images\user.png" alt="" onClick={toggleDropdown}/>
+                {isDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg z-10">
+                    <ul>
+                      <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                        Manage my Account
+                      </li>
+                      <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                        My Order
+                      </li>
+                      <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                        My Cancellations
+                      </li>
+                      <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                        My Reviews
+                      </li>
+                      <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                        Logout
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -40,4 +84,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Header;

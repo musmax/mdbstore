@@ -101,21 +101,22 @@ const Home = () => {
       </div>
       <div className="productDisplay product-container">
         <div className="products display flex gap-4 overflow-x-auto">
-          {visibleProducts.map((product) => (
-            <div
-              key={product.id}
-              className="w-60 h-85 bg-gray-300 p-2.5 rounded-sm flex flex-col gap-1 border-b"
-            >
-              <div>
-                <ProductImage url={product.url} discount={product.discount} />
-              </div>
-              <h2>{product.name}</h2>
-              <p>{product.price}</p>
-              <div>
-                <Rating rate={product.rate} />
-              </div>
-            </div>
-          ))}
+{visibleProducts.map((product) => (
+  <div
+    key={product.id}
+    className="w-60 h-85 bg-gray-300 p-2.5 rounded-sm flex flex-col gap-1 border-b"
+  >
+    <div>
+      <ProductImage product={product} />
+    </div>
+    <h2>{product.name}</h2>
+    <p>{product.price}</p>
+    <div>
+      <Rating rate={product.rate} />
+    </div>
+  </div>
+))}
+
         </div>
         <div className="flex justify-center items-center mt-8">
           <button className="bg-red-600 text-white size-10 py-1 w-40 rounded">
@@ -183,21 +184,22 @@ const Home = () => {
               <button className='bg-red-500 text-white rounded p-2'>View All</button>
             </div>
             <div className="products display flex gap-4 overflow-x-auto pt-8">
-          {visibleProducts.map((product) => (
-            <div
-              key={product.id}
-              className="w-60 h-85 bg-gray-300 p-2.5 rounded-sm flex flex-col gap-1 border-b"
-            >
-              <div>
-                <ProductImage url={product.url} discount={product.discount} />
-              </div>
-              <h2>{product.name}</h2>
-              <p>{product.price}</p>
-              <div>
-                <Rating rate={product.rate} />
-              </div>
-            </div>
-          ))}
+{visibleProducts.map((product) => (
+  <div
+    key={product.id}
+    className="w-60 h-85 bg-gray-300 p-2.5 rounded-sm flex flex-col gap-1 border-b"
+  >
+    <div>
+      <ProductImage product={product} />
+    </div>
+    <h2>{product.name}</h2>
+    <p>{product.price}</p>
+    <div>
+      <Rating rate={product.rate} />
+    </div>
+  </div>
+))}
+
         </div>
           </div>
         </div>
@@ -240,7 +242,7 @@ const Home = () => {
               className="w-60 h-85 bg-gray-300 p-2.5 rounded-sm flex flex-col gap-1 border-b"
             >
               <div>
-                <ProductImage url={product.url} discount={product.discount} />
+                <ProductImage url={product.url} discount={product.discount} product={product}/>
               </div>
               <h2>{product.name}</h2>
               <p>{product.price}</p>

@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {register} from '../redux/authSlice';
 
 const formStyle =
   'border-x-0 border-t-0 border-b border-gray-300 focus:border-gray-500 focus:outline-none focus:ring-0';
 
 const SignUp = () => {
+  const registerChecker = useSelector((state) => state.auth.isAuthenticated);
+  const authDispatch = useDispatch();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -38,28 +43,17 @@ const SignUp = () => {
             .matches(/[@$!%*?&]/, 'Password must contain at least one special character')
             .required('Password is required'),
         })}
-        onSubmit={(values, { setSubmitting }) => {
-          console.log('Form submitted successfully:', values);
-
-          // Save user to local storage
-          let db = [];
-          const doesDatabaseExist = localStorage.getItem('user');
-          if (!doesDatabaseExist) {
-            localStorage.setItem('user', JSON.stringify([]));
-          } else {
-            db = JSON.parse(doesDatabaseExist);
+        onSubmit={async (values, { setSubmitting }) => {
+          try {
+            console.log('Form submitted successfully:', values);
+            await authDispatch(register(values)).unwrap();
+            console.log('Registration successful, navigating...');
+            navigate('/registration-successful');
+          } catch (error) {
+            console.error('Registration failed:', error);
+          } finally {
+            setSubmitting(false);
           }
-
-          const isUserExisting = db.find(
-            (existingUser) => existingUser.email === values.email
-          );
-          if (isUserExisting) {
-            alert('User with the same email already exists');
-          } else {
-            db.push(values);
-            localStorage.setItem('user', JSON.stringify(db));
-          }
-          setSubmitting(false);
         }}
       >
         {({
@@ -116,6 +110,35 @@ const SignUp = () => {
                 />
                 {errors.lastname && touched.lastname ? (
                   <span className="text-red-500">{errors.lastname}</span>
+                ) : null}
+
+                {/* phoneNumber */}
+                <input
+                  type="text"
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  value={values.phoneNumber}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={formStyle}
+                  placeholder="080xx123984"
+                />
+                {errors.phoneNumber && touched.phoneNumber ? (
+                  <span className="text-red-500">{errors.phoneNumber}</span>
+                ) : null}
+                {/* Username */}
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  value={values.username}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={formStyle}
+                  placeholder="example_username"
+                />
+                {errors.username && touched.username ? (
+                  <span className="text-red-500">{errors.username}</span>
                 ) : null}
 
                 {/* Email */}

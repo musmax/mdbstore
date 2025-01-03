@@ -4,16 +4,18 @@ import Indicator from '../components/Indicator';
 import ProductImage from '../components/ProductImage';
 import Rating from '../components/Rating';
 
+import img1 from '../../public/images/footer-1.png';
+
 const Home = () => {
   const products = [
-    { id: 1, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x500 1.png', discount: '- 34%', rate: 4 },
-    { id: 2, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x500 1.png', discount: '- 34%', rate: 5 },
-    { id: 3, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x500 1.png', discount: '- 34%', rate: 2 },
-    { id: 4, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x500 1.png', discount: '- 34%', rate: 4 },
-    { id: 5, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x500 1.png', discount: '- 34%', rate: 3 },
-    { id: 6, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x500 1.png', discount: '- 34%', rate: 1 },
-    { id: 7, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x500 1.png', discount: '- 34%', rate: 1 },
-    { id: 8, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x500 1.png', discount: '- 34%', rate: 2 },
+    { id: 1, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x5001.png', discount: '- 34%', rate: 4 },
+    { id: 2, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x5001.png', discount: '- 34%', rate: 5 },
+    { id: 3, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x5001.png', discount: '- 34%', rate: 2 },
+    { id: 4, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x5001.png', discount: '- 34%', rate: 4 },
+    { id: 5, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x5001.png', discount: '- 34%', rate: 3 },
+    { id: 6, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x5001.png', discount: '- 34%', rate: 1 },
+    { id: 7, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x5001.png', discount: '- 34%', rate: 1 },
+    { id: 8, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x5001.png', discount: '- 34%', rate: 2 },
   ];
 
   const [startIndex, setStartIndex] = useState(0);
@@ -151,7 +153,7 @@ const Home = () => {
           {/* Categories */}
           <div className='flex gap-2 pt-8'>
             <Link to='category'>
-            <img src="public\images\Category-Phone.png" alt="" className="" />
+            <img src={img1} alt="" className="" />
             </Link>
             <Link to='category'>
             <img src="public\images\Category-Phone (1).png" alt="" className="" />

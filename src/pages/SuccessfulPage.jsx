@@ -4,7 +4,7 @@ const SuccessfulPage = () => {
   return (
     <div>
         <h1>Verify Email Page</h1>
-        <img src="public\images\emailverify.jpg" alt="verify my email" />
+        <img src="public/images/emailverify.jpg" alt="verify my email" />
     </div>
   )
 }

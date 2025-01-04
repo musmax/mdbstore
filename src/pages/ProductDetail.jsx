@@ -44,7 +44,7 @@ const ProductDetail = () => {
           </div>
         </div>
         <div className='grid'>
-        <img src="public\images\Frame 894.png" alt="product image" />
+        <img src="public/images/Frame 894.png" alt="product image" />
         </div>
       </div>
       <div className='flex flex-col gap-3'>
@@ -98,7 +98,7 @@ const ProductDetail = () => {
 
           </div>
           <div>
-          <img src="public\images\Frame 911.png" alt="product image" />
+          <img src="public/images/Frame 911.png" alt="product image" />
           </div>
       </div>
     </div>

@@ -70,7 +70,7 @@ const Login = () => {
             {/* Left side image */}
             <div>
               <img
-                src="public/images/Side Image.png"
+                src="/images/Side Image.png"
                 alt="Sign up illustration"
               />
             </div>
@@ -137,7 +137,7 @@ const Login = () => {
                 <div className="w-52">
                   <Link to="/">
                     <img
-                      src="public/images/Google Sign up.png"
+                      src="/images/Google Sign up.png"
                       alt="Google Signup"
                     />
                   </Link>

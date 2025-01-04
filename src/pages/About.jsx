@@ -11,20 +11,20 @@ const About = () => {
           </p>
         </div>
         <div className=''>
-        <img src="public\images\Side Image (1).png" alt="" />
+        <img src="public/images/Side Image (1).png" alt="" />
         </div>
       </div>
       <div>
-        <img src="public\images\Frame 891.png" alt="" />
+        <img src="public/images/Frame 891.png" alt="" />
       </div>
       <div>
-        <img src="public\images\Full services.png" alt="" />
+        <img src="public/images/Full services.png" alt="" />
       </div>
       <div>
-        <img src="public\images\Frame 890.png" alt="" />
+        <img src="public/images/Frame 890.png" alt="" />
       </div>
       <div>
-        <img src="public\images\Frame 891.png" alt="" />
+        <img src="public/images/Frame 891.png" alt="" />
       </div>
     </div>
   )

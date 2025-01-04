@@ -54,7 +54,7 @@ const Header = () => {
             </div>
             <div>
               <div className='pl-2'>
-                <img src="public\images\user.png" alt="" onClick={toggleDropdown}/>
+                <img src="public/images/user.png" alt="" onClick={toggleDropdown}/>
                 {isDropdownOpen && (
                   <div className="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg z-10">
                     <ul>

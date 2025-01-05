@@ -4,7 +4,6 @@ import Indicator from '../components/Indicator';
 import ProductImage from '../components/ProductImage';
 import Rating from '../components/Rating';
 
-import img1 from '../..//images/footer-1.png';
 
 const Home = () => {
   const products = [

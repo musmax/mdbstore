@@ -4,18 +4,17 @@ import Indicator from '../components/Indicator';
 import ProductImage from '../components/ProductImage';
 import Rating from '../components/Rating';
 
-import img1 from '../../public/images/footer-1.png';
 
 const Home = () => {
   const products = [
-    { id: 1, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x5001.png', discount: '- 34%', rate: 4 },
-    { id: 2, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x5001.png', discount: '- 34%', rate: 5 },
-    { id: 3, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x5001.png', discount: '- 34%', rate: 2 },
-    { id: 4, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x5001.png', discount: '- 34%', rate: 4 },
-    { id: 5, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x5001.png', discount: '- 34%', rate: 3 },
-    { id: 6, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x5001.png', discount: '- 34%', rate: 1 },
-    { id: 7, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x5001.png', discount: '- 34%', rate: 1 },
-    { id: 8, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: 'public/images/g92-2-500x5001.png', discount: '- 34%', rate: 2 },
+    { id: 1, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: '/images/g92-2-500x5001.png', discount: '- 34%', rate: 4 },
+    { id: 2, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: '/images/g92-2-500x5001.png', discount: '- 34%', rate: 5 },
+    { id: 3, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: '/images/g92-2-500x5001.png', discount: '- 34%', rate: 2 },
+    { id: 4, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: '/images/g92-2-500x5001.png', discount: '- 34%', rate: 4 },
+    { id: 5, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: '/images/g92-2-500x5001.png', discount: '- 34%', rate: 3 },
+    { id: 6, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: '/images/g92-2-500x5001.png', discount: '- 34%', rate: 1 },
+    { id: 7, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: '/images/g92-2-500x5001.png', discount: '- 34%', rate: 1 },
+    { id: 8, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: '/images/g92-2-500x5001.png', discount: '- 34%', rate: 2 },
   ];
 
   const [startIndex, setStartIndex] = useState(0);
@@ -153,22 +152,22 @@ const Home = () => {
           {/* Categories */}
           <div className='flex gap-2 pt-8'>
             <Link to='category'>
-            <img src="public/images/Category-Phone (1).png" alt="" className="" />
+            <img src="/images/Category-Phone (1).png" alt="" className="" />
             </Link>
             <Link to='category'>
-            <img src="public/images/Category-Phone (1).png" alt="" className="" />
+            <img src="/images/Category-Phone (1).png" alt="" className="" />
             </Link>
             <Link to='category'>
-            <img src="public/images/Category-Phone (2).png" alt="" className="" />
+            <img src="/images/Category-Phone (2).png" alt="" className="" />
             </Link>
             <Link to='category'>
-            <img src="public/images/Category-Phone (6).png" alt="" className="" />
+            <img src="/images/Category-Phone (6).png" alt="" className="" />
             </Link>
             <Link to='category'>
-            <img src="public/images/Category-Phone (4).png" alt="" className="" />
+            <img src="/images/Category-Phone (4).png" alt="" className="" />
             </Link>
             <Link to='category'>
-            <img src="public/images/Category-Phone (5).png" alt="" className="" />
+            <img src="/images/Category-Phone (5).png" alt="" className="" />
             </Link>
           </div>
         </div>
@@ -208,7 +207,7 @@ const Home = () => {
       </div>
         <div className="enhance product-container">
           <Link to='category'>
-          <img src="public/images/Frame 600.png" alt="" />
+          <img src="/images/Frame 600.png" alt="" />
           </Link>
         </div>
         <div className="ourProducts">
@@ -267,24 +266,24 @@ const Home = () => {
             <div className="latest flex gap-2 pt-8">
               <div>
                 <Link to='categories'>
-                <img src="public/images/Frame 684.png" alt="" />
+                <img src="/images/Frame 684.png" alt="" />
                 </Link>
               </div>
               <div className=''>
                 <div>
                 <Link to='categories'>
-                <img src="public/images/Frame 685.png" alt="" />
+                <img src="/images/Frame 685.png" alt="" />
                 </Link>
                 </div>
                 <div className='flex gap-2 pt-4'>
                   <div>
                   <Link to='categories'>
-                <img src="public/images/Frame 686.png" alt="" />
+                <img src="/images/Frame 686.png" alt="" />
                 </Link>
                   </div>
                   <div>
                   <Link to='categories'>
-                <img src="public/images/Frame 687.png" alt="" />
+                <img src="/images/Frame 687.png" alt="" />
                 </Link>
                   </div>
                 </div>
@@ -292,7 +291,7 @@ const Home = () => {
             </div>
         </div>
         <div className="service p-20">
-          <img src="public/images/Frame 702.png" alt="" />
+          <img src="/images/Frame 702.png" alt="" />
         </div>
         </div>
     </div>

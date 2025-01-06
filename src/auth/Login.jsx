@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
+import {login} from '../redux/authSlice'
+import { useDispatch } from 'react-redux';
 
 const formStyle =
   'border-x-0 border-t-0 border-b border-gray-300 focus:border-gray-500 focus:outline-none focus:ring-0';
@@ -9,6 +11,11 @@ const formStyle =
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const dispatchLogin = useDispatch();
+
+  function setAdminREendering () {
+    setRenderAdminPage(!renderAdminPage);
+  }
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -33,29 +40,20 @@ const Login = () => {
             .matches(/[@$!%*?&]/, 'Password must contain at least one special character')
             .required('Password is required'),
         })}
-        onSubmit={(values, { setSubmitting }) => {
-          // Retrieve the user database from localStorage
-          const storedUsers = localStorage.getItem('user');
-          if (!storedUsers) {
-            alert('No registered accounts found. Please register first.');
-          } else {
-            const userDatabase = JSON.parse(storedUsers);
-            const isUserExisting = userDatabase.find(
-              (existingUser) =>
-                existingUser.email === values.email &&
-                existingUser.password === values.password
-            );
 
-            if (!isUserExisting) {
-              alert('Invalid email or password');
-            } else {
-              alert('Login successful!');
-              navigate('/'); // Redirect to the home page
-            }
+        onSubmit={async (values, { setSubmitting }) => {
+          // lets talk to the BE now
+          try {
+            console.log(values);
+            dispatchLogin(login(values));
+            // navigate('/');
+          } catch (error) {
+            console.error('Login failed:', error);
           }
 
           setSubmitting(false);
         }}
+
       >
         {({
           values,
@@ -70,7 +68,7 @@ const Login = () => {
             {/* Left side image */}
             <div>
               <img
-                src="public/images/Side Image.png"
+                src="/images/Side Image.png"
                 alt="Sign up illustration"
               />
             </div>
@@ -136,10 +134,7 @@ const Login = () => {
               <div className="pt-10 flex flex-col items-center gap-5">
                 <div className="w-52">
                   <Link to="/">
-                    <img
-                      src="public/images/Google Sign up.png"
-                      alt="Google Signup"
-                    />
+                  <i className="fa fa-google" aria-hidden="true"></i>
                   </Link>
                 </div>
                 <p>

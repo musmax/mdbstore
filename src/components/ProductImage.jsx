@@ -53,7 +53,7 @@ const ProductImage = (props) => {
         </div>
         <img
           src={
-            product.url ? product.url : 'public/images/g92-2-500x500 1.png'
+            product.url ? product.url : '/images/g92-2-500x500 1.png'
           }
           alt="product images"
         />

@@ -4,24 +4,36 @@ import axios from 'axios';
 
 const VerifyEmail = () => {
   const [searchParams] = useSearchParams();
-  const token = searchParams.get('token');
+  const token = searchParams.get('token'); // Get the token from query parameters
   const [status, setStatus] = useState('Verifying...');
 
   useEffect(() => {
     const verifyToken = async () => {
-        try {
-          const response = await axios.post(
-            `http://localhost:3090/v1/auth/verify-email`,
-            { token }
-          );
-          setStatus('Your email has been verified successfully! You can now log in.');
-        } catch (error) {
-          setStatus('Verification failed. The link might be invalid or expired.');
-        }
-      };
-      
+      if (!token) {
+        setStatus('Verification failed. No token found.');
+        return;
+      }
+      try {
+        console.log(token);
+        // Send the token as a query parameter
+        const response = await axios.post(
+          `https://mdbstorebe-express.onrender.com/v1/auth/verify-email?token=${token}`,
+          {}, // No request body is required
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+        setStatus('Your email has been verified successfully! You can now log in.');
+      } catch (error) {
+        console.log(token);
+        console.error('Error verifying token:', error); // Log error for debugging
+        setStatus('Verification failed. The link might be invalid or expired.');
+      }
+    };
 
-    if (token) verifyToken();
+    verifyToken();
   }, [token]);
 
   return (

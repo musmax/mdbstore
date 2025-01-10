@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
+import { logout } from '../redux/authSlice'
 
 const LoginHeader = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const totalCart = useSelector((state) => state.cart.totalCart);
-  
+    const totalCart = useSelector((state) => state.cart.totalCart);  
     const toggleDropdown = () => {
       setIsDropdownOpen(!isDropdownOpen);
     };
+
+    const logoutDispatch = useDispatch();
 
   return (
     <div>    
@@ -27,8 +29,8 @@ const LoginHeader = () => {
               <Link to="/contact">Contact</Link>
               <Link to="/about">About</Link>
               <Link to="/sign-up">Sign Up</Link>
-              <Link to="/sign-up">Category</Link>
-              <Link to="/sign-up">Product</Link>
+              <Link to="/categories">Category</Link>
+              <Link to="/product">Product</Link>
           </ul>
           <div className='flex items-center border rounded px-3'>
             <div className='relative'>
@@ -72,7 +74,9 @@ const LoginHeader = () => {
                       <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                         My Reviews
                       </li>
-                      <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                      <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                      onClick={() => logoutDispatch(logout())}
+                      >
                         Logout
                       </li>
                     </ul>

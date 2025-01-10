@@ -9,8 +9,10 @@ import Login from '../auth/Login'
 import Cart from '../pages/Cart'
 import SuccessfulPage from '../pages/SuccessfulPage'
 import VerifyEmail from '../pages/VerifyEmail'
-import Category from '../pages/Category'
 import Product from '../pages/Product'
+import CreateCategory from '../category/createCategory'
+import Category from '../category/Category'
+import EditCategory from '../category/EditCategory'
 
 const AllRoutes = () => {
   return (
@@ -24,10 +26,10 @@ const AllRoutes = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/registration-successful" element={<SuccessfulPage />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
-        <Route path="/category" element={<Category />} />
+        <Route path="/categories" element={<Category />} />
+        <Route path="/category-form" element={<CreateCategory />} />
+        <Route path="/category/edit/:id" element={<EditCategory />} />
         <Route path="/product" element={<Product />} />
-        {/* <Route path='posts/:id/:name' element={<PostItem/>}/> // in dynamic param u can add as many params as possible
-        <Route path='profile' element={<Profile/>}/> */}
         <Route path='*' element={
             <>
             <h1>Page not found!!!</h1>

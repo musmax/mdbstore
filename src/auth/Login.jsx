@@ -42,17 +42,21 @@ const Login = () => {
         })}
 
         onSubmit={async (values, { setSubmitting }) => {
-          // lets talk to the BE now
           try {
-            console.log(values);
-            dispatchLogin(login(values));
-            // navigate('/');
+            const resultAction = await dispatchLogin(login(values));
+            if (login.fulfilled.match(resultAction)) {
+              // Redirect to home on successful login
+              navigate("/");
+            } else if (login.rejected.match(resultAction)) {
+              console.error("Login failed:", resultAction.payload);
+            }
           } catch (error) {
-            console.error('Login failed:', error);
+            console.error("Unexpected error:", error);
+          } finally {
+            setSubmitting(false);
           }
-
-          setSubmitting(false);
         }}
+        
 
       >
         {({

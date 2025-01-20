@@ -9,11 +9,11 @@ import Login from "../auth/Login";
 import Cart from "../pages/Cart";
 import SuccessfulPage from "../pages/SuccessfulPage";
 import VerifyEmail from "../pages/VerifyEmail";
-import Product from "../pages/Product";
 import CreateCategory from "../category/createCategory";
 import Category from "../category/Category";
 import EditCategory from "../category/EditCategory";
 import CreateProduct from "../product/createProduct";
+import Product from "../product/Product";
 
 const AllRoutes = () => {
   return (
@@ -30,7 +30,8 @@ const AllRoutes = () => {
       <Route path="/categories" element={<Category />} />
       <Route path="/category-form" element={<CreateCategory />} />
       <Route path="/category/edit/:id" element={<EditCategory />} />
-      <Route path="/product" element={<CreateProduct />} />
+      <Route path="/add-product" element={<CreateProduct />} />
+      <Route path="/products" element={<Product />} />
       <Route
         path="*"
         element={

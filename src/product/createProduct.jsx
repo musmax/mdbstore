@@ -3,6 +3,8 @@ import { Formik, FieldArray } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import PopUp from "../components/PopUp";
+import { useDispatch } from "react-redux";
+import { createProduct } from "../redux/productSlice";
 
 const formStyle =
   "border border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 rounded px-4 py-2";
@@ -10,9 +12,10 @@ const formStyle =
 const CreateProduct = () => {
   const [showPopUp, setShowPopUp] = useState(false);
   const navigate = useNavigate();
+  const dispatchProduct = useDispatch();
 
   const handlePopUpClose = () => {
-    setShowPopUp(false);
+    setShowPopUp(true);
     navigate("/products");
   };
 
@@ -57,9 +60,10 @@ const CreateProduct = () => {
             discount: Yup.number()
               .integer("Discount must be an integer")
               .min(0, "Discount cannot be negative")
-              .max(100, "Discount cannot exceed 100"),
+              .max(100, "Discount cannot exceed 100")
+              .required("Discount is required"),
             categoriesId: Yup.array()
-              .of(Yup.string().required("Category is required"))
+              .of(Yup.number().required("Category is required"))
               .min(1, "At least one category is required"),
             productImages: Yup.array()
               .of(
@@ -72,9 +76,17 @@ const CreateProduct = () => {
               .min(1, "At least one image is required"),
           })}
           onSubmit={(values, { setSubmitting, resetForm }) => {
-            console.log(values);
-            setShowPopUp(true);
-            resetForm();
+            try {
+              const updatedValues = {
+                ...values,
+                categoriesId: values.categoriesId.map((id) => Number(id)),
+              };
+              dispatchProduct(createProduct(updatedValues));
+              setShowPopUp(true);
+              resetForm();
+            } catch (error) {
+              console.error("Product creation failed:", error);
+            }
             setSubmitting(false);
           }}
         >
@@ -224,44 +236,45 @@ const CreateProduct = () => {
                 )}
               />
 
-              {/* Product Images */}
-              <FieldArray
-                name="productImages"
-                render={(arrayHelpers) => (
-                  <div>
-                    <label className="block text-gray-600 font-medium mb-1">
-                      Product Images
-                    </label>
-                    {values.productImages.map((image, index) => (
-                      <div key={index} className="flex items-center space-x-2">
-                        <input
-                          type="text"
-                          value={image.url}
-                          onChange={(e) =>
-                            arrayHelpers.replace(index, { url: e.target.value })
-                          }
-                          className={formStyle}
-                          placeholder={`Image URL ${index + 1}`}
-                        />
-                        <button
-                          type="button"
-                          onClick={() => arrayHelpers.remove(index)}
-                          className="text-red-500"
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    ))}
-                    <button
-                      type="button"
-                      onClick={() => arrayHelpers.push({ url: "" })}
-                      className="text-blue-500"
-                    >
-                      Add Image
-                    </button>
-                  </div>
+              {/* Available Quantity */}
+              <div>
+                <label className="block text-gray-600 font-medium mb-1">
+                  Available Quantity
+                </label>
+                <input
+                  type="number"
+                  name="availableQuantity"
+                  value={values.availableQuantity}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={formStyle}
+                  placeholder="Enter available quantity"
+                />
+                {errors.availableQuantity && touched.availableQuantity && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.availableQuantity}
+                  </p>
                 )}
-              />
+              </div>
+
+              {/* Discount */}
+              <div>
+                <label className="block text-gray-600 font-medium mb-1">
+                  Discount
+                </label>
+                <input
+                  type="number"
+                  name="discount"
+                  value={values.discount}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={formStyle}
+                  placeholder="Enter discount percentage"
+                />
+                {errors.discount && touched.discount && (
+                  <p className="text-red-500 text-sm mt-1">{errors.discount}</p>
+                )}
+              </div>
 
               {/* Categories */}
               <FieldArray
@@ -302,12 +315,50 @@ const CreateProduct = () => {
                 )}
               />
 
-              {/* Submit Button */}
+              {/* Product Images */}
+              <FieldArray
+                name="productImages"
+                render={(arrayHelpers) => (
+                  <div>
+                    <label className="block text-gray-600 font-medium mb-1">
+                      Product Images
+                    </label>
+                    {values.productImages.map((image, index) => (
+                      <div key={index} className="flex items-center space-x-2">
+                        <input
+                          type="text"
+                          value={image.url}
+                          onChange={(e) =>
+                            arrayHelpers.replace(index, { url: e.target.value })
+                          }
+                          className={formStyle}
+                          placeholder={`Image URL ${index + 1}`}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => arrayHelpers.remove(index)}
+                          className="text-red-500"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    ))}
+                    <button
+                      type="button"
+                      onClick={() => arrayHelpers.push({ url: "" })}
+                      className="text-blue-500"
+                    >
+                      Add Image
+                    </button>
+                  </div>
+                )}
+              />
+
               <div>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-blue-500 text-white font-medium py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                  className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
                 >
                   Submit
                 </button>
@@ -315,10 +366,8 @@ const CreateProduct = () => {
             </form>
           )}
         </Formik>
-
         {showPopUp && (
           <PopUp
-            title="Success"
             message="Product created successfully!"
             onClose={handlePopUpClose}
           />

@@ -1,20 +1,75 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Indicator from '../components/Indicator';
-import ProductImage from '../components/ProductImage';
-import Rating from '../components/Rating';
-
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import Indicator from "../components/Indicator";
+import ProductImage from "../components/ProductImage";
+import Rating from "../components/Rating";
 
 const Home = () => {
   const products = [
-    { id: 1, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: '/images/g92-2-500x5001.png', discount: '- 34%', rate: 4 },
-    { id: 2, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: '/images/g92-2-500x5001.png', discount: '- 34%', rate: 5 },
-    { id: 3, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: '/images/g92-2-500x5001.png', discount: '- 34%', rate: 2 },
-    { id: 4, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: '/images/g92-2-500x5001.png', discount: '- 34%', rate: 4 },
-    { id: 5, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: '/images/g92-2-500x5001.png', discount: '- 34%', rate: 3 },
-    { id: 6, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: '/images/g92-2-500x5001.png', discount: '- 34%', rate: 1 },
-    { id: 7, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: '/images/g92-2-500x5001.png', discount: '- 34%', rate: 1 },
-    { id: 8, name: 'Havit HV-G92 Game Pad', price: '₦ 3,500', url: '/images/g92-2-500x5001.png', discount: '- 34%', rate: 2 },
+    {
+      id: 1,
+      name: "Havit HV-G92 Game Pad",
+      price: "₦ 3,500",
+      url: "/images/g92-2-500x5001.png",
+      discount: "- 34%",
+      rate: 4,
+    },
+    {
+      id: 2,
+      name: "Havit HV-G92 Game Pad",
+      price: "₦ 3,500",
+      url: "/images/g92-2-500x5001.png",
+      discount: "- 34%",
+      rate: 5,
+    },
+    {
+      id: 3,
+      name: "Havit HV-G92 Game Pad",
+      price: "₦ 3,500",
+      url: "/images/g92-2-500x5001.png",
+      discount: "- 34%",
+      rate: 2,
+    },
+    {
+      id: 4,
+      name: "Havit HV-G92 Game Pad",
+      price: "₦ 3,500",
+      url: "/images/g92-2-500x5001.png",
+      discount: "- 34%",
+      rate: 4,
+    },
+    {
+      id: 5,
+      name: "Havit HV-G92 Game Pad",
+      price: "₦ 3,500",
+      url: "/images/g92-2-500x5001.png",
+      discount: "- 34%",
+      rate: 3,
+    },
+    {
+      id: 6,
+      name: "Havit HV-G92 Game Pad",
+      price: "₦ 3,500",
+      url: "/images/g92-2-500x5001.png",
+      discount: "- 34%",
+      rate: 1,
+    },
+    {
+      id: 7,
+      name: "Havit HV-G92 Game Pad",
+      price: "₦ 3,500",
+      url: "/images/g92-2-500x5001.png",
+      discount: "- 34%",
+      rate: 1,
+    },
+    {
+      id: 8,
+      name: "Havit HV-G92 Game Pad",
+      price: "₦ 3,500",
+      url: "/images/g92-2-500x5001.png",
+      discount: "- 34%",
+      rate: 2,
+    },
   ];
 
   const [startIndex, setStartIndex] = useState(0);
@@ -61,13 +116,15 @@ const Home = () => {
           {/* Flash Sales, Timer, and Arrows */}
           <div className="flex items-center justify-between pt-5">
             {/* Flash Sales */}
-            <p className="text-36px font-semibold font-inter whitespace-nowrap">Flash Sales</p>
+            <p className="text-36px font-semibold font-inter whitespace-nowrap">
+              Flash Sales
+            </p>
 
             {/* Timer */}
             <div className="self-center">
               {/* Timer Labels */}
               <div className="flex justify-center gap-4">
-                <p className="text-gray-500 font-medium text-center">Hours</p>
+                <p className="text-gray-500 font-medium text-center">Hours-H</p>
                 <p className="text-gray-500 font-medium text-center">Minutes</p>
                 <p className="text-gray-500 font-medium text-center">Seconds</p>
               </div>
@@ -102,22 +159,21 @@ const Home = () => {
       </div>
       <div className="productDisplay product-container">
         <div className="products display flex gap-4 overflow-x-auto">
-{visibleProducts.map((product) => (
-  <div
-    key={product.id}
-    className="w-60 h-85 bg-gray-300 p-2.5 rounded-sm flex flex-col gap-1 border-b"
-  >
-    <div>
-      <ProductImage product={product} />
-    </div>
-    <h2>{product.name}</h2>
-    <p>{product.price}</p>
-    <div>
-      <Rating rate={product.rate} />
-    </div>
-  </div>
-))}
-
+          {visibleProducts.map((product) => (
+            <div
+              key={product.id}
+              className="w-60 h-85 bg-gray-300 p-2.5 rounded-sm flex flex-col gap-1 border-b"
+            >
+              <div>
+                <ProductImage product={product} />
+              </div>
+              <h2>{product.name}</h2>
+              <p>{product.price}</p>
+              <div>
+                <Rating rate={product.rate} />
+              </div>
+            </div>
+          ))}
         </div>
         <div className="flex justify-center items-center mt-8">
           <button className="bg-red-600 text-white size-10 py-1 w-40 rounded">
@@ -133,7 +189,7 @@ const Home = () => {
           {/* Browse by categories */}
           <div className="flex items-center justify-between pt-5">
             {/* Arrow Controls */}
-            <p className='size-18 font-bold font-inter'>Browse By Categories</p>
+            <p className="size-18 font-bold font-inter">Browse By Categories</p>
             <div className="arrow flex gap-3">
               <button
                 className="fa fa-arrow-left"
@@ -150,24 +206,24 @@ const Home = () => {
             </div>
           </div>
           {/* Categories */}
-          <div className='flex gap-2 pt-8'>
-            <Link to='category'>
-            <img src="/images/Category-Phone (1).png" alt="" className="" />
+          <div className="flex gap-2 pt-8">
+            <Link to="category">
+              <img src="/images/Category-Phone (1).png" alt="" className="" />
             </Link>
-            <Link to='category'>
-            <img src="/images/Category-Phone (1).png" alt="" className="" />
+            <Link to="category">
+              <img src="/images/Category-Phone (1).png" alt="" className="" />
             </Link>
-            <Link to='category'>
-            <img src="/images/Category-Phone (2).png" alt="" className="" />
+            <Link to="category">
+              <img src="/images/Category-Phone (2).png" alt="" className="" />
             </Link>
-            <Link to='category'>
-            <img src="/images/Category-Phone (6).png" alt="" className="" />
+            <Link to="category">
+              <img src="/images/Category-Phone (6).png" alt="" className="" />
             </Link>
-            <Link to='category'>
-            <img src="/images/Category-Phone (4).png" alt="" className="" />
+            <Link to="category">
+              <img src="/images/Category-Phone (4).png" alt="" className="" />
             </Link>
-            <Link to='category'>
-            <img src="/images/Category-Phone (5).png" alt="" className="" />
+            <Link to="category">
+              <img src="/images/Category-Phone (5).png" alt="" className="" />
             </Link>
           </div>
         </div>
@@ -181,36 +237,39 @@ const Home = () => {
           <div className="">
             {/* Arrow Controls */}
             <div className="flex justify-between items-center pt-3">
-            <p className='size-18 font-bold font-inter'>Best Selling products</p>
-              <button className='bg-red-500 text-white rounded p-2'>View All</button>
+              <p className="size-18 font-bold font-inter">
+                Best Selling products
+              </p>
+              <button className="bg-red-500 text-white rounded p-2">
+                View All
+              </button>
             </div>
             <div className="products display flex gap-4 overflow-x-auto pt-8">
-{visibleProducts.map((product) => (
-  <div
-    key={product.id}
-    className="w-60 h-85 bg-gray-300 p-2.5 rounded-sm flex flex-col gap-1 border-b"
-  >
-    <div>
-      <ProductImage product={product} />
-    </div>
-    <h2>{product.name}</h2>
-    <p>{product.price}</p>
-    <div>
-      <Rating rate={product.rate} />
-    </div>
-  </div>
-))}
-
-        </div>
+              {visibleProducts.map((product) => (
+                <div
+                  key={product.id}
+                  className="w-60 h-85 bg-gray-300 p-2.5 rounded-sm flex flex-col gap-1 border-b"
+                >
+                  <div>
+                    <ProductImage product={product} />
+                  </div>
+                  <h2>{product.name}</h2>
+                  <p>{product.price}</p>
+                  <div>
+                    <Rating rate={product.rate} />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-        <div className="enhance product-container">
-          <Link to='category'>
+      <div className="enhance product-container">
+        <Link to="category">
           <img src="/images/Frame 600.png" alt="" />
-          </Link>
-        </div>
-        <div className="ourProducts">
+        </Link>
+      </div>
+      <div className="ourProducts">
         <div className="header-container">
           <div>
             <Indicator indicator="Products" />
@@ -218,7 +277,7 @@ const Home = () => {
           {/* Browse by categories */}
           <div className="flex items-center justify-between pt-5">
             {/* Arrow Controls */}
-            <p className='size-18 font-bold font-inter'>Explore Our Products</p>
+            <p className="size-18 font-bold font-inter">Explore Our Products</p>
             <div className="arrow flex gap-3">
               <button
                 className="fa fa-arrow-left"
@@ -236,64 +295,68 @@ const Home = () => {
           </div>
         </div>
         <div className="productDisplay product-container">
-        <div className="products display flex gap-4 overflow-x-auto">
-          {visibleProducts.map((product) => (
-            <div
-              key={product.id}
-              className="w-60 h-85 bg-gray-300 p-2.5 rounded-sm flex flex-col gap-1 border-b"
-            >
-              <div>
-                <ProductImage url={product.url} discount={product.discount} product={product}/>
+          <div className="products display flex gap-4 overflow-x-auto">
+            {visibleProducts.map((product) => (
+              <div
+                key={product.id}
+                className="w-60 h-85 bg-gray-300 p-2.5 rounded-sm flex flex-col gap-1 border-b"
+              >
+                <div>
+                  <ProductImage
+                    url={product.url}
+                    discount={product.discount}
+                    product={product}
+                  />
+                </div>
+                <h2>{product.name}</h2>
+                <p>{product.price}</p>
+                <div>
+                  <Rating rate={product.rate} />
+                </div>
               </div>
-              <h2>{product.name}</h2>
-              <p>{product.price}</p>
-              <div>
-                <Rating rate={product.rate} />
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-center items-center mt-8">
-          <button className="bg-red-600 text-white size-10 py-1 w-40 rounded">
-            View All Products
-          </button>
+            ))}
+          </div>
+          <div className="flex justify-center items-center mt-8">
+            <button className="bg-red-600 text-white size-10 py-1 w-40 rounded">
+              View All Products
+            </button>
+          </div>
         </div>
       </div>
-        </div>
-        <div className="latest product-container">
+      <div className="latest product-container">
         <div>
-            <Indicator indicator="New Arrivals" />
-            <div className="latest flex gap-2 pt-8">
-              <div>
-                <Link to='categories'>
+          <Indicator indicator="New Arrivals" />
+          <div className="latest flex gap-2 pt-8">
+            <div>
+              <Link to="categories">
                 <img src="/images/Frame 684.png" alt="" />
+              </Link>
+            </div>
+            <div className="">
+              <div>
+                <Link to="categories">
+                  <img src="/images/Frame 685.png" alt="" />
                 </Link>
               </div>
-              <div className=''>
+              <div className="flex gap-2 pt-4">
                 <div>
-                <Link to='categories'>
-                <img src="/images/Frame 685.png" alt="" />
-                </Link>
+                  <Link to="categories">
+                    <img src="/images/Frame 686.png" alt="" />
+                  </Link>
                 </div>
-                <div className='flex gap-2 pt-4'>
-                  <div>
-                  <Link to='categories'>
-                <img src="/images/Frame 686.png" alt="" />
-                </Link>
-                  </div>
-                  <div>
-                  <Link to='categories'>
-                <img src="/images/Frame 687.png" alt="" />
-                </Link>
-                  </div>
+                <div>
+                  <Link to="categories">
+                    <img src="/images/Frame 687.png" alt="" />
+                  </Link>
                 </div>
               </div>
             </div>
+          </div>
         </div>
         <div className="service p-20">
           <img src="/images/Frame 702.png" alt="" />
         </div>
-        </div>
+      </div>
     </div>
   );
 };

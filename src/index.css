@@ -1,55 +1,111 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 .header-container {
-    max-width: 1280px;
-    margin: auto;
-    min-height: 10vh;
-    padding: 0 80px;
+  max-width: 1280px;
+  margin: auto;
+  min-height: 10vh;
+  padding: 0 80px;
 }
+
 .product-container {
-    max-width: 1280px;
-    margin: auto;
-    min-height: 10vh;
-    padding: 40px 80px;
+  max-width: 1280px;
+  margin: auto;
+  min-height: 10vh;
+  padding: 40px 80px;
 }
+
 .product-container-view {
-    max-width: 1000px;
-    margin: auto;
-    min-height: 10vh;
-    padding: 40px 80px;
+  max-width: 1000px;
+  margin: auto;
+  min-height: 10vh;
+  padding: 40px 80px;
 }
 
 .footer-container {
-    max-width: 1280px;
-    min-height: 35vh;
-    background-color: black;
-    color: white;
-    padding: 50px 80px;
+  max-width: 1280px;
+  min-height: 35vh;
+  background-color: black;
+  color: white;
+  padding: 50px 80px;
 }
 
 .common-flex {
-    display: flex;
-    justify-content:space-between;
-    flex-direction: column;
-    font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  font-size: 13px;
 }
 
 .carousel {
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    gap: 115px;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  gap: 115px;
 }
 
 .carousel-right-item {
-    width: 700px;
-    height: 300px;
+  width: 700px;
+  height: 300px;
 }
 
 .pimage {
-    width: 300px;
-    height:300px;
+  width: 300px;
+  height: 300px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .header-container,
+  .product-container,
+  .product-container-view,
+  .footer-container {
+    padding: 20px;
+  }
+
+  .carousel {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .carousel-right-item {
+    width: 100%;
+    height: auto;
+  }
+
+  .common-flex {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pimage {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container,
+  .product-container,
+  .product-container-view,
+  .footer-container {
+    padding: 10px;
+  }
+
+  .carousel {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .carousel-right-item {
+    width: 100%;
+    height: auto;
+  }
 }

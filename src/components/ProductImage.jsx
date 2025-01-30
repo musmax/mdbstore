@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { add } from '../redux/cartSlice';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { add } from "../redux/cartSlice";
 
 const ProductImage = (props) => {
   const { product } = props;
-  const [likedColor, setLikedColor] = useState('black');
+  const [likedColor, setLikedColor] = useState("black");
   const [isAddingToCart, setIsAddingToCart] = useState(false); // Track whether user is adding to cart
   const [quantity, setQuantity] = useState(1); // Track the entered quantity
   const dispatch = useDispatch();
 
   const toggleLikedColor = () => {
-    setLikedColor((prevColor) => (prevColor === 'black' ? 'green' : 'black'));
+    setLikedColor((prevColor) => (prevColor === "black" ? "green" : "black"));
   };
 
   const handleAddToCart = () => {
@@ -21,7 +21,7 @@ const ProductImage = (props) => {
   const handleConfirmAddToCart = () => {
     const productWithNumberPrice = {
       ...product,
-      price: parseInt(product.price.replace(/[^\d]/g, ''), 10), // Convert price to number
+      price: parseInt(product.price.replace(/[^\d]/g, ""), 10), // Convert price to number
       quantity, // Include the quantity
     };
     dispatch(add(productWithNumberPrice));
@@ -39,11 +39,11 @@ const ProductImage = (props) => {
           <div className="showItem flex flex-col gap-2">
             <i
               className={`fa fa-heart bg-white border rounded-full p-2 cursor-pointer ${
-                likedColor === 'green' ? 'text-green-500' : 'text-black'
+                likedColor === "green" ? "text-green-500" : "text-black"
               }`}
               onClick={toggleLikedColor}
             ></i>
-            <Link to="/view-product">
+            <Link to={`/view-product/${product.id}`}>
               <i
                 className="fa fa-eye bg-white text-black border rounded-full p-2 cursor-pointer"
                 aria-hidden="true"
@@ -52,9 +52,7 @@ const ProductImage = (props) => {
           </div>
         </div>
         <img
-          src={
-            product.url ? product.url : '/images/g92-2-500x500 1.png'
-          }
+          src={product.url ? product.url : "/images/g92-2-500x500 1.png"}
           alt="product images"
         />
         {!isAddingToCart ? (

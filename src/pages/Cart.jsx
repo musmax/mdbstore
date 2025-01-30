@@ -1,20 +1,47 @@
-import React from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
+import apiClient from "../../apiClient";
 
 const Cart = () => {
   const carts = useSelector((state) => state.cart.cartList);
+  const [isCheckout, setIsCheckout] = useState(false); // Track checkout state
+
+  const handleCheckout = async () => {
+    const paymentObjects = carts.map((item) => ({
+      productId: item.id,
+      quantity: item.quantity,
+    }));
+
+    const payload = {
+      paymentMethod: "paystack",
+      deliveryAddress: "52, Shitta street. Dopemu, Agege. Lagos state.",
+      paymentObjects,
+    };
+
+    try {
+      // Send request to the backend to initiate the order
+      const response = await apiClient.post("/billings", payload);
+      console.log("response", response);
+
+      if (response?.data?.data?.url) {
+        // Redirect to Paystack payment page
+        // window.location.href = response.data.data.url;
+      } else {
+        throw new Error("Payment details not found.");
+      }
+    } catch (error) {
+      console.error("Checkout failed:", error);
+      alert("There was an issue with your checkout process. Please try again.");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-5">
-      {/* Page Title */}
       <h1 className="text-3xl font-bold text-center mb-10 text-gray-800">
         Your Cart
       </h1>
-
-      {/* Cart Table */}
       <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-xl p-5">
         <table className="w-full border-collapse">
-          {/* Table Header */}
           <thead>
             <tr className="bg-gray-200 text-gray-600 uppercase text-sm font-bold">
               <th className="py-3 px-5 text-left">Product</th>
@@ -24,8 +51,6 @@ const Cart = () => {
               <th className="py-3 px-5 text-center">Total</th>
             </tr>
           </thead>
-
-          {/* Table Body */}
           <tbody>
             {carts.map((item, index) => (
               <tr
@@ -37,7 +62,7 @@ const Cart = () => {
                 <td className="py-4 px-5 text-gray-700">{item.name}</td>
                 <td className="py-4 px-5 text-gray-700">
                   <img
-                    src={item.url}
+                    src={item.url.replace("http://", "https://")}
                     alt={item.name}
                     className="w-10 h-10"
                   />
@@ -55,8 +80,6 @@ const Cart = () => {
             ))}
           </tbody>
         </table>
-
-        {/* Total Price */}
         {carts.length > 0 && (
           <div className="text-right mt-5">
             <h2 className="text-lg font-semibold text-gray-800">
@@ -67,19 +90,18 @@ const Cart = () => {
             </h2>
           </div>
         )}
-
-        {/* Empty Cart Message */}
         {carts.length === 0 && (
           <div className="text-center py-10 text-gray-600">
             <p>Your cart is empty. Start adding products!</p>
           </div>
         )}
       </div>
-
-      {/* Button Container */}
       <div className="flex justify-center mt-5">
-        <button className="bg-red-500 text-white shadow-lg rounded-xl p-5">
-          Proceed to checkout
+        <button
+          onClick={handleCheckout}
+          className="bg-red-500 text-white shadow-lg rounded-xl p-5"
+        >
+          Proceed to payment
         </button>
       </div>
     </div>

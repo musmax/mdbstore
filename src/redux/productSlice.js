@@ -6,6 +6,7 @@ import axios from "axios";
 const initialState = {
     loading: false,
     products: [],
+    product: {},
     error: null,
 };
 
@@ -84,7 +85,6 @@ export const deleteProduct = createAsyncThunk(
     }
 );
 
-
 // Slice
 const productSlice = createSlice({
     name: "product",
@@ -129,7 +129,7 @@ const productSlice = createSlice({
             })
             .addCase(getProduct.fulfilled, (state, action) => {
                 state.loading = false;
-                state.products = action.payload;
+                state.product = action.payload;
             })
             .addCase(getProduct.rejected, (state, action) => {
                 state.loading = false;

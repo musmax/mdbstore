@@ -24,7 +24,7 @@ const Product = () => {
     try {
       const result = await dispatchProduct(viewProducts(query));
       console.log("products fetched successfully:", result.payload);
-      setProducts(result.payload.data);
+      setProducts(result.payload.data.products);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -84,66 +84,66 @@ const Product = () => {
           className="w-full p-2 border border-gray-300 rounded"
         />
       </div>
-      <table className="w-full border-collapse border border-gray-300">
-        <thead>
-          <tr className="bg-gray-100">
-            <th className="border border-gray-300 px-4 py-2 text-center">ID</th>
-            <th className="border border-gray-300 px-4 py-2 text-left">
-              product Name
-            </th>
-            <th className="border border-gray-300 px-4 py-2 text-left">
-              Description
-            </th>
-            <th className="border border-gray-300 px-4 py-2 text-center">
-              price
-            </th>
-            <th className="border border-gray-300 px-4 py-2 text-center">
-              availableQuantity
-            </th>
-            <th className="border border-gray-300 px-4 py-2 text-center">
-              Discount
-            </th>
-            <th className="border border-gray-300 px-4 py-2 text-center">
-              Actions
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((product) => (
-            <tr key={product.id} className="hover:bg-gray-50">
-              <td className="border border-gray-300 px-4 py-2">{product.id}</td>
-              <td className="border border-gray-300 px-4 py-2 text-center">
-                {product.name}
-              </td>
-              <td className="border border-gray-300 px-4 py-2">
-                {product.description}
-              </td>
-              <td className="border border-gray-300 px-4 py-2 text-center">
-                {product.price}
-              </td>
-              <td className="border border-gray-300 px-4 py-2 text-center">
-                {product.availableQuantity}
-              </td>
-              <td className="border border-gray-300 px-4 py-2 text-center">
-                {product.discount}
-              </td>
-              <td className="border border-gray-300 px-4 py-2 text-center">
-                <Link to={`/product/edit/${product.id}`}>
-                  <button className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 mr-2">
-                    Edit
-                  </button>
-                </Link>
-                <button
-                  onClick={() => handleDelete(product.id)}
-                  className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                >
-                  Delete
-                </button>
-              </td>
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-max border-collapse border border-gray-300">
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="border border-gray-300 px-4 py-2 text-center">
+                ID
+              </th>
+              <th className="border border-gray-300 px-4 py-2 text-left">
+                product Name
+              </th>
+              <th className="border border-gray-300 px-4 py-2 text-left">
+                Description
+              </th>
+              <th className="border border-gray-300 px-4 py-2 text-center">
+                price
+              </th>
+              <th className="border border-gray-300 px-4 py-2 text-center">
+                availableQuantity
+              </th>
+              <th className="border border-gray-300 px-4 py-2 text-center">
+                Discount
+              </th>
+              <th className="border border-gray-300 px-4 py-2 text-center">
+                Actions
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {products.map((product) => (
+              <tr key={product.id} className="hover:bg-gray-50">
+                <td className="border border-gray-300 px-4 py-2">
+                  {product.id}
+                </td>
+                <td className="border border-gray-300 px-4 py-2 text-center">
+                  {product.name}
+                </td>
+                <td className="border border-gray-300 px-4 py-2">
+                  {product.description}
+                </td>
+                <td className="border border-gray-300 px-4 py-2 text-center">
+                  {product.price}
+                </td>
+                <td className="border border-gray-300 px-4 py-2 text-center">
+                  {product.availableQuantity}
+                </td>
+                <td className="border border-gray-300 px-4 py-2 text-center">
+                  {product.discount}
+                </td>
+                <td className="border border-gray-300 px-4 py-2 text-center">
+                  <Link to={`/product/edit/${product.id}`}>
+                    <button className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 mr-2">
+                      Edit
+                    </button>
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

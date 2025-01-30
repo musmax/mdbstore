@@ -14,6 +14,7 @@ import Category from "../category/Category";
 import EditCategory from "../category/EditCategory";
 import CreateProduct from "../product/createProduct";
 import Product from "../product/Product";
+import VerifyPayment from "../components/VerifyPayment";
 
 const AllRoutes = () => {
   return (
@@ -22,7 +23,7 @@ const AllRoutes = () => {
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/sign-up" element={<SignUp />} />
-      <Route path="/view-product" element={<ProductDetail />} />
+      <Route path="/view-product/:id" element={<ProductDetail />} />
       <Route path="/login" element={<Login />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/registration-successful" element={<SuccessfulPage />} />
@@ -32,6 +33,7 @@ const AllRoutes = () => {
       <Route path="/category/edit/:id" element={<EditCategory />} />
       <Route path="/add-product" element={<CreateProduct />} />
       <Route path="/products" element={<Product />} />
+      <Route path="/verify-payments" element={<VerifyPayment />} />
       <Route
         path="*"
         element={
